@@ -1,0 +1,12 @@
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/bin/Debug/net10.0/Opzenix.ServiceDefaults.deps.json
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/bin/Debug/net10.0/Opzenix.ServiceDefaults.dll
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/bin/Debug/net10.0/Opzenix.ServiceDefaults.pdb
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/obj/Debug/net10.0/Opzenix.ServiceDefaults.csproj.AssemblyReference.cache
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/obj/Debug/net10.0/Opzenix.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/obj/Debug/net10.0/Opzenix.ServiceDefaults.AssemblyInfoInputs.cache
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/obj/Debug/net10.0/Opzenix.ServiceDefaults.AssemblyInfo.cs
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/obj/Debug/net10.0/Opzenix.ServiceDefaults.csproj.CoreCompileInputs.cache
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/obj/Debug/net10.0/Opzenix.ServiceDefaults.dll
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/obj/Debug/net10.0/refint/Opzenix.ServiceDefaults.dll
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/obj/Debug/net10.0/Opzenix.ServiceDefaults.pdb
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.ServiceDefaults/obj/Debug/net10.0/ref/Opzenix.ServiceDefaults.dll

@@ -1,0 +1,11 @@
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/bin/Debug/net10.0/Opzenix.Modules.Reviews.deps.json
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/bin/Debug/net10.0/Opzenix.Modules.Reviews.dll
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/bin/Debug/net10.0/Opzenix.Modules.Reviews.pdb
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/obj/Debug/net10.0/Opzenix.Modules.Reviews.GeneratedMSBuildEditorConfig.editorconfig
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/obj/Debug/net10.0/Opzenix.Modules.Reviews.AssemblyInfoInputs.cache
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/obj/Debug/net10.0/Opzenix.Modules.Reviews.AssemblyInfo.cs
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/obj/Debug/net10.0/Opzenix.Modules.Reviews.csproj.CoreCompileInputs.cache
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/obj/Debug/net10.0/Opzenix.Modules.Reviews.dll
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/obj/Debug/net10.0/refint/Opzenix.Modules.Reviews.dll
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/obj/Debug/net10.0/Opzenix.Modules.Reviews.pdb
+/Users/abhishekpanda/Documents/Opzenix-ReviewAgent/Opzenix/Opzenix.Modules.Reviews/obj/Debug/net10.0/ref/Opzenix.Modules.Reviews.dll

@@ -1,0 +1,6 @@
+@Opzenix.Api_HostAddress = http://localhost:5163
+
+GET {{Opzenix.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,27 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.4.3">
+
+    <ItemGroup>
+      <ProjectReference Include="..\Opzenix.Api\Opzenix.Api.csproj" />
+      <ProjectReference Include="..\Opzenix.Workers.Review\Opzenix.Workers.Review.csproj" />
+      <ProjectReference Include="..\Opzenix.Workers.AI\Opzenix.Workers.AI.csproj" />
+      <ProjectReference Include="..\Opzenix.Workers.Repository\Opzenix.Workers.Repository.csproj" />
+      <ProjectReference Include="..\Opzenix.Workers.Graph\Opzenix.Workers.Graph.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Aspire.Hosting" Version="13.4.3" />
+      <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.4.3" />
+      <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.4.3" />
+      <PackageReference Include="Aspire.Hosting.Redis" Version="13.4.3" />
+      <PackageReference Include="Aspire.Hosting.Seq" Version="13.4.3" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UserSecretsId>4edb6f87-cddf-4b3e-800b-027e1d78b1bd</UserSecretsId>
+    </PropertyGroup>
+
+</Project>

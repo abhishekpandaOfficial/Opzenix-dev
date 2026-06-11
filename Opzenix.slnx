@@ -1,0 +1,16 @@
+<Solution>
+  <Project Path="Opzenix.Api/Opzenix.Api.csproj" />
+  <Project Path="Opzenix.AppHost/Opzenix.AppHost.csproj" />
+  <Project Path="Opzenix.BuildingBlocks/Opzenix.BuildingBlocks.csproj" />
+  <Project Path="Opzenix.Modules.Identity/Opzenix.Modules.Identity.csproj" />
+  <Project Path="Opzenix.Modules.KnowledgeGraph/Opzenix.Modules.KnowledgeGraph.csproj" />
+  <Project Path="Opzenix.Modules.Projects/Opzenix.Modules.Projects.csproj" />
+  <Project Path="Opzenix.Modules.Repositories/Opzenix.Modules.Repositories.csproj" />
+  <Project Path="Opzenix.Modules.Reviews/Opzenix.Modules.Reviews.csproj" />
+  <Project Path="Opzenix.ServiceDefaults/Opzenix.ServiceDefaults.csproj" />
+  <Project Path="Opzenix.Tests/Opzenix.Tests.csproj" />
+  <Project Path="Opzenix.Workers.AI/Opzenix.Workers.AI.csproj" />
+  <Project Path="Opzenix.Workers.Graph/Opzenix.Workers.Graph.csproj" />
+  <Project Path="Opzenix.Workers.Repository/Opzenix.Workers.Repository.csproj" />
+  <Project Path="Opzenix.Workers.Review/Opzenix.Workers.Review.csproj" />
+</Solution>
