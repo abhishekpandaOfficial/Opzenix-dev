@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Opzenix.Modules.Reviews.Application.Commands.CreateReview;
 using Opzenix.Modules.Reviews.Application.Commands.GenerateReview;
+using Opzenix.Modules.Reviews.Application.Queries.GetReviewById;
 
 namespace Opzenix.Api.Controllers;
 
@@ -42,5 +43,18 @@ public sealed class ReviewsController
             cancellationToken);
 
         return Ok();
+    }
+    [HttpGet("{reviewId:guid}")]
+    public async Task<IActionResult> GetById(
+        Guid reviewId,
+        CancellationToken cancellationToken)
+    {
+        var response =
+            await _mediator.Send(
+                new GetReviewByIdQuery(
+                    reviewId),
+                cancellationToken);
+
+        return Ok(response);
     }
 }

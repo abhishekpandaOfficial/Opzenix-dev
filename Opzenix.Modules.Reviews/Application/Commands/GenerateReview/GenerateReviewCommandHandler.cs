@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Opzenix.Modules.Repositories.Infrastructure.Persistence;
 using Opzenix.Modules.Reviews.Application.Interfaces;
 using Opzenix.Modules.Reviews.Application.Services;
-using Opzenix.Modules.Reviews.Domain.Entities;
 
 namespace Opzenix.Modules.Reviews.Application.Commands.GenerateReview;
 
@@ -43,6 +42,16 @@ public sealed class GenerateReviewCommandHandler
                 .ToListAsync(
                     cancellationToken);
 
+        review.MarkStarted();
+
+        var filesAnalyzed = files.Count;
+
+        var linesAnalyzed =
+            files.Sum(
+                x => x.Patch?.Split('\n').Length ?? 0);
+
+        var findingsCount = 0;
+
         foreach (var file in files)
         {
             var findings =
@@ -51,27 +60,20 @@ public sealed class GenerateReviewCommandHandler
                     file.FileName,
                     file.Patch);
 
+            findingsCount += findings.Count;
+
             foreach (var finding in findings)
             {
                 _reviewsDbContext.ReviewFindings.Add(
                     finding);
             }
         }
-        var findingsCount =
-            await _reviewsDbContext.ReviewFindings
-                .CountAsync(
-                    x => x.ReviewId == review.Id,
-                    cancellationToken);
-        Console.WriteLine(
-            $"Files Loaded: {files.Count}");
-        Console.WriteLine(
-            $"ReviewId: {review.Id}");
 
-        Console.WriteLine(
-            $"PullRequestId: {review.PullRequestId}");
+        review.SetMetrics(
+            filesAnalyzed,
+            linesAnalyzed,
+            findingsCount);
 
-        Console.WriteLine(
-            $"Files Loaded: {files.Count}");
         review.SetSummary(
             $"Review completed. {findingsCount} findings detected.");
 
