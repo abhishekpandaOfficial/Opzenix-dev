@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="Opzenix.Api/Opzenix.Api.csproj" />
   <Project Path="Opzenix.AppHost/Opzenix.AppHost.csproj" />
+  <Project Path="Opzenix.BuildingBlocks.AI/Opzenix.BuildingBlocks.AI.csproj" />
   <Project Path="Opzenix.BuildingBlocks/Opzenix.BuildingBlocks.csproj" />
   <Project Path="Opzenix.Modules.Identity/Opzenix.Modules.Identity.csproj" />
   <Project Path="Opzenix.Modules.KnowledgeGraph/Opzenix.Modules.KnowledgeGraph.csproj" />
