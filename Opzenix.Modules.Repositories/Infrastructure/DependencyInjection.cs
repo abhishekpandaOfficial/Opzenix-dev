@@ -4,10 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Opzenix.Modules.Repositories.Application.Interfaces;
 using Opzenix.Modules.Repositories.Infrastructure.Persistence;
 using FluentValidation;
-using MediatR;
 using Opzenix.Modules.Repositories.Application.Commands.CreateRepository;
 using Opzenix.Modules.Repositories.Application.Services;
 using Opzenix.Modules.Repositories.Application.Validators;
+using Opzenix.Modules.Repositories.Infrastructure.GitProviders.GitHub.Clients;
 
 namespace Opzenix.Modules.Repositories.Infrastructure;
 
@@ -38,6 +38,15 @@ public static class DependencyInjection
         services.AddScoped<
             IRepositorySyncService,
             RepositorySyncService>();
+        services.AddHttpClient<GitHubClient>(client =>
+        {
+            client.BaseAddress =
+                new Uri("https://api.github.com/");
+
+            client.DefaultRequestHeaders.Add(
+                "User-Agent",
+                "Opzenix");
+        });
         return services;
     }
 }

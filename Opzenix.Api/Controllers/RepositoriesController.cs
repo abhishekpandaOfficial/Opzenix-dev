@@ -1,6 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Opzenix.Modules.Repositories.Application.Commands.CreateRepository;
+using Opzenix.Modules.Repositories.Application.Queries.GetGitHubBranches;
+using Opzenix.Modules.Repositories.Application.Queries.GetGitHubCommits;
+using Opzenix.Modules.Repositories.Application.Queries.GetGitHubRepository;
 using Opzenix.Modules.Repositories.Contracts.Requests;
 using Opzenix.Modules.Repositories.Application.Queries.GetRepositoryById;
 using Opzenix.Modules.Repositories.Application.Queries.GetRepositoriesByOrganization;
@@ -65,6 +68,58 @@ public sealed class RepositoriesController : ControllerBase
             await _mediator.Send(
                 new GetRepositoriesByOrganizationQuery(
                     organizationId),
+                cancellationToken);
+
+        return Ok(result);
+    }
+    [HttpGet("github/{owner}/{repository}")]
+    public async Task<IActionResult> GetGitHubRepository(
+        string owner,
+        string repository,
+        CancellationToken cancellationToken)
+    {
+        var result =
+            await _mediator.Send(
+                new GetGitHubRepositoryQuery(
+                    owner,
+                    repository),
+                cancellationToken);
+
+        if (result is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(result);
+    }
+    [HttpGet("github/{owner}/{repository}/branches")]
+    public async Task<IActionResult> GetBranches(
+        string owner,
+        string repository,
+        CancellationToken cancellationToken)
+    {
+        var result =
+            await _mediator.Send(
+                new GetGitHubBranchesQuery(
+                    owner,
+                    repository),
+                cancellationToken);
+
+        return Ok(result);
+    }
+    [HttpGet("github/{owner}/{repository}/commits/{branch}")]
+    public async Task<IActionResult> GetCommits(
+        string owner,
+        string repository,
+        string branch,
+        CancellationToken cancellationToken)
+    {
+        var result =
+            await _mediator.Send(
+                new GetGitHubCommitsQuery(
+                    owner,
+                    repository,
+                    branch),
                 cancellationToken);
 
         return Ok(result);

@@ -1,0 +1,31 @@
+-- To Run Postgresql in Docket locally :
+
+        docker run -d \
+        --name opzenix-postgres \
+        --restart unless-stopped \
+        -e POSTGRES_DB=opzenix \
+        -e POSTGRES_USER=postgres \
+        -e POSTGRES_PASSWORD=postgres \
+        -p 5432:5432 \
+        -v opzenix-postgres-data:/var/lib/postgresql/data \
+        postgres:17
+        
+-- Check if it's running
+    docker ps
+-- Stop/ Start / Restart 
+       docker start opzenix-postgres
+       docker stop opzenix-postgres
+       docker restart opzenix-postgres
+       
+-- Connect to PostgreSQL Shell
+    docker exec -it opzenix-postgres psql -U postgres -d opzenix
+    /dt
+    /du
+    /l
+    SELECT current_database();
+    \q
+-- Postgres connection string locally 
+    Host=localhost;Port=5432;Database=opzenix;Username=postgres;Password=postgres
+-- Verify Connection 
+    psql -h localhost -p 5432 -U postgres -d opzenix
+    Password : postgres
