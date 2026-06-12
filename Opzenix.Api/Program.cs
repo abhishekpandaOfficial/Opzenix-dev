@@ -2,6 +2,7 @@ using Opzenix.BuildingBlocks;
 using Opzenix.Modules.Identity.Infrastructure;
 using Scalar.AspNetCore;
 using Opzenix.Modules.Repositories.Infrastructure;
+using Opzenix.Modules.Reviews.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ builder.AddServiceDefaults();
 builder.Services.AddBuildingBlocks();
 
 builder.Services.AddIdentityModule(
+    builder.Configuration);
+
+builder.Services.AddReviewsModule(
     builder.Configuration);
 
 builder.Services.AddRepositoriesModule(

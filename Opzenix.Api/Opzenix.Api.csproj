@@ -27,6 +27,7 @@
     <ProjectReference Include="..\Opzenix.ServiceDefaults\Opzenix.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Opzenix.Modules.Identity\Opzenix.Modules.Identity.csproj" />
     <ProjectReference Include="..\Opzenix.Modules.Repositories\Opzenix.Modules.Repositories.csproj" />
+    <ProjectReference Include="..\Opzenix.Modules.Reviews\Opzenix.Modules.Reviews.csproj" />
   </ItemGroup>
 
 </Project>
