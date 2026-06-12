@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Opzenix.Modules.Repositories.Infrastructure.Persistence;
@@ -11,9 +12,11 @@ using Opzenix.Modules.Repositories.Infrastructure.Persistence;
 namespace Opzenix.Modules.Repositories.Migrations
 {
     [DbContext(typeof(RepositoryDbContext))]
-    partial class RepositoryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260612142944_AddPullRequests")]
+    partial class AddPullRequests
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,41 +116,6 @@ namespace Opzenix.Modules.Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("pull_requests", (string)null);
-                });
-
-            modelBuilder.Entity("Opzenix.Modules.Repositories.Domain.Entities.PullRequestFile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Additions")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Changes")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Deletions")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Patch")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("PullRequestId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("pull_request_files", (string)null);
                 });
 
             modelBuilder.Entity("Opzenix.Modules.Repositories.Domain.Entities.Repository", b =>

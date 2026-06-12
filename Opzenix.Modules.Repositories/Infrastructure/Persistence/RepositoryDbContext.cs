@@ -23,6 +23,9 @@ public sealed class RepositoryDbContext : DbContext, IRepositoryDbContext
 
     public DbSet<PullRequest> PullRequests =>
         Set<PullRequest>();
+    
+    public DbSet<PullRequestFile> PullRequestFiles =>
+        Set<PullRequestFile>();
 
     protected override void OnModelCreating(
         ModelBuilder modelBuilder)

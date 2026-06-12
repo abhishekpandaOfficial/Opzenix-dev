@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Opzenix.Modules.Repositories.Infrastructure.Persistence;
@@ -11,9 +12,11 @@ using Opzenix.Modules.Repositories.Infrastructure.Persistence;
 namespace Opzenix.Modules.Repositories.Migrations
 {
     [DbContext(typeof(RepositoryDbContext))]
-    partial class RepositoryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260612133503_AddBranches")]
+    partial class AddBranches
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,10 +56,11 @@ namespace Opzenix.Modules.Repositories.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("BranchId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("AuthorName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("CreatedAtUtc")
+                    b.Property<DateTime>("CommittedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Message")
@@ -68,12 +72,11 @@ namespace Opzenix.Modules.Repositories.Migrations
 
                     b.Property<string>("Sha")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("commits", (string)null);
+                    b.ToTable("Commits");
                 });
 
             modelBuilder.Entity("Opzenix.Modules.Repositories.Domain.Entities.PullRequest", b =>
@@ -89,16 +92,13 @@ namespace Opzenix.Modules.Repositories.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long>("GitHubId")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("Number")
                         .HasColumnType("integer");
 
                     b.Property<Guid>("RepositoryId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("State")
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -106,48 +106,9 @@ namespace Opzenix.Modules.Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
-                    b.ToTable("pull_requests", (string)null);
-                });
-
-            modelBuilder.Entity("Opzenix.Modules.Repositories.Domain.Entities.PullRequestFile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Additions")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Changes")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Deletions")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Patch")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("PullRequestId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("pull_request_files", (string)null);
+                    b.ToTable("PullRequests");
                 });
 
             modelBuilder.Entity("Opzenix.Modules.Repositories.Domain.Entities.Repository", b =>

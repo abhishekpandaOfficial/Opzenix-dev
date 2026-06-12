@@ -6,13 +6,13 @@ public sealed class Commit : BaseEntity
 {
     public Guid RepositoryId { get; private set; }
 
+    public Guid BranchId { get; private set; }
+
     public string Sha { get; private set; }
 
     public string Message { get; private set; }
 
-    public string AuthorName { get; private set; }
-
-    public DateTime CommittedAtUtc { get; private set; }
+    public DateTime CreatedAtUtc { get; private set; }
 
     private Commit()
     {
@@ -20,21 +20,20 @@ public sealed class Commit : BaseEntity
 
     public Commit(
         Guid repositoryId,
+        Guid branchId,
         string sha,
-        string message,
-        string authorName,
-        DateTime committedAtUtc)
+        string message)
     {
         Id = Guid.NewGuid();
 
         RepositoryId = repositoryId;
 
+        BranchId = branchId;
+
         Sha = sha;
 
         Message = message;
 
-        AuthorName = authorName;
-
-        CommittedAtUtc = committedAtUtc;
+        CreatedAtUtc = DateTime.UtcNow;
     }
 }

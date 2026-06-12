@@ -44,4 +44,27 @@ public sealed class GitHubClient
             $"repos/{owner}/{repository}/commits?sha={branch}",
             cancellationToken);
     }
+    public async Task<List<GitHubPullRequestResponse>?> GetPullRequestsAsync(
+        string owner,
+        string repository,
+        CancellationToken cancellationToken)
+    {
+        return await _httpClient.GetFromJsonAsync<
+            List<GitHubPullRequestResponse>>(
+            $"repos/{owner}/{repository}/pulls",
+            cancellationToken);
+    }
+    
+    public async Task<List<GitHubPullRequestFileResponse>?>
+        GetPullRequestFilesAsync(
+            string owner,
+            string repository,
+            int pullRequestNumber,
+            CancellationToken cancellationToken)
+    {
+        return await _httpClient.GetFromJsonAsync<
+            List<GitHubPullRequestFileResponse>>(
+            $"repos/{owner}/{repository}/pulls/{pullRequestNumber}/files",
+            cancellationToken);
+    }
 }
