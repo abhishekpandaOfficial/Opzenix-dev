@@ -64,6 +64,10 @@ public sealed class GenerateReviewCommandHandler
         var provider =
             _aiProviderFactory.GetProvider(
                 _aiOptions.DefaultProvider);
+        
+        review.SetAiMetadata(
+            provider.Name,
+            provider.Model);
 
         foreach (var file in files)
         {

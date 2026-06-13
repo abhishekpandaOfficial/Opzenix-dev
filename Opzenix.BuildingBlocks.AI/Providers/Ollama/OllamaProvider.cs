@@ -13,6 +13,7 @@ public sealed class OllamaProvider
     private readonly IHttpClientFactory _httpClientFactory;
 
     private readonly OllamaOptions _options;
+    public string Model => _options.Model;
 
     public string Name => "Ollama";
 
@@ -58,7 +59,6 @@ public sealed class OllamaProvider
         
         Console.WriteLine(
             "========== OLLAMA RESPONSE ==========");
-
         Console.WriteLine(
             result?.Response);
 
@@ -69,6 +69,9 @@ public sealed class OllamaProvider
             OllamaResponseParser.Parse(
                 request.FileName,
                 result?.Response ?? string.Empty);
+        Console.WriteLine();
+        Console.WriteLine($"PARSED FINDINGS: {findings.Count}");
+        Console.WriteLine();
 
         return new AiReviewResponse
         {

@@ -22,6 +22,11 @@ public sealed class Review : AggregateRoot
 
     public int FindingsCount { get; private set; }
     public ReviewType ReviewType { get; private set; }
+    public string AiProvider { get; private set; }
+        = string.Empty;
+
+    public string AiModel { get; private set; }
+        = string.Empty;
 
     private Review()
     {
@@ -63,5 +68,12 @@ public sealed class Review : AggregateRoot
         FilesAnalyzed = filesAnalyzed;
         LinesAnalyzed = linesAnalyzed;
         FindingsCount = findingsCount;
+    }
+    public void SetAiMetadata(
+        string provider,
+        string model)
+    {
+        AiProvider = provider;
+        AiModel = model;
     }
 }

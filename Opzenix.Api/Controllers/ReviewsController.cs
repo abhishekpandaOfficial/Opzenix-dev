@@ -5,6 +5,7 @@ using Opzenix.Modules.Reviews.Application.Commands.GenerateReview;
 using Opzenix.Modules.Reviews.Application.Queries.GetReviewById;
 using Opzenix.Modules.Reviews.Application.Queries.GetReviewFindings;
 using Opzenix.Modules.Reviews.Application.Queries.GetReviews;
+using Opzenix.Modules.Reviews.Application.Queries.GetReviewSummary;
 using Opzenix.Modules.Reviews.Contracts.Requests;
 
 namespace Opzenix.Api.Controllers;
@@ -75,6 +76,7 @@ public sealed class ReviewsController
 
         return Ok(response);
     }
+    
     [HttpGet]
     public async Task<IActionResult> GetReviews(
         Guid? pullRequestId,
@@ -84,6 +86,20 @@ public sealed class ReviewsController
             await _mediator.Send(
                 new GetReviewsQuery(
                     pullRequestId),
+                cancellationToken);
+
+        return Ok(response);
+    }
+    
+    [HttpGet("{reviewId:guid}/summary")]
+    public async Task<IActionResult> GetSummary(
+        Guid reviewId,
+        CancellationToken cancellationToken)
+    {
+        var response =
+            await _mediator.Send(
+                new GetReviewSummaryQuery(
+                    reviewId),
                 cancellationToken);
 
         return Ok(response);

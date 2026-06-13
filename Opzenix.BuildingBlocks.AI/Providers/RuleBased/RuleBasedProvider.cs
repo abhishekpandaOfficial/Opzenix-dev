@@ -7,6 +7,7 @@ public sealed class RuleBasedProvider
     : IAiProvider
 {
     public string Name => "RuleBased";
+    public string Model => "BuiltIn";
 
     public Task<AiReviewResponse> ReviewAsync(
         AiReviewRequest request,
