@@ -2,12 +2,15 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Opzenix.Modules.Repositories.Infrastructure.Persistence;
 using Opzenix.Modules.Reviews.Application.Interfaces;
+using Opzenix.BuildingBlocks.AI.Enums;
+
 
 using Opzenix.BuildingBlocks.AI.Abstractions;
 using Opzenix.BuildingBlocks.AI.Models;
 using Opzenix.Modules.Reviews.Domain.Entities;
 using Microsoft.Extensions.Options;
 using Opzenix.BuildingBlocks.AI.Configuration;
+using Opzenix.Modules.Reviews.Application.Mappers;
 
 namespace Opzenix.Modules.Reviews.Application.Commands.GenerateReview;
 
@@ -70,7 +73,10 @@ public sealed class GenerateReviewCommandHandler
                     {
                         ReviewId = review.Id,
                         FileName = file.FileName,
-                        Content = file.Patch
+                        Content = file.Patch,
+                        ReviewType =
+                            AiReviewTypeMapper.Map(
+                                review.ReviewType)
                     },
                     cancellationToken);
 

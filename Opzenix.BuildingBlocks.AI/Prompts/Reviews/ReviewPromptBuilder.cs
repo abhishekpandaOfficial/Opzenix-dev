@@ -1,58 +1,69 @@
+using Opzenix.BuildingBlocks.AI.Enums;
+using Opzenix.BuildingBlocks.AI.Prompts.Reviews.Resolvers;
+
 namespace Opzenix.BuildingBlocks.AI.Prompts.Reviews;
 
 public static class ReviewPromptBuilder
 {
     public static string Build(
         string fileName,
-        string content)
+        string content,
+        AiReviewType reviewType)
     {
-        return $"""
-                You are a senior software engineer performing a pull request review.
+        var profileInstructions =
+            ReviewProfileResolver.Resolve(
+                reviewType);
+        
+        return $$"""
+                 You are a senior software engineer performing a pull request review.
+                 
+                 Review Focus:
+                 {{profileInstructions}}
 
-                IMPORTANT RULES:
+                 IMPORTANT RULES:
 
-                1. Review ONLY the code that is provided.
-                2. DO NOT invent issues.
-                3. DO NOT assume missing context.
-                4. Report findings ONLY if there is direct evidence in the code.
-                5. If no issues exist, return EXACTLY:
+                 1. Review ONLY the code that is provided.
+                 2. DO NOT invent issues.
+                 3. DO NOT assume missing context.
+                 4. Report findings ONLY if there is direct evidence in the code.
+                 5. If no issues exist, return EXACTLY:
 
-                NO_FINDINGS
+                 NO_FINDINGS
 
-                OUTPUT FORMAT:
+                 OUTPUT FORMAT:
 
-                Severity|Category|Message|Recommendation
+                 Severity|Category|Message|Recommendation
 
-                Allowed Severities:
-                - Low
-                - Medium
-                - High
+                 Allowed Severities:
+                 - Low
+                 - Medium
+                 - High
 
-                Allowed Categories:
-                - Security
-                - Performance
-                - Architecture
-                - Maintainability
-                - Reliability
-                - Logging
-                - Testing
+                 Allowed Categories:
+                 - Security
+                 - Performance
+                 - Architecture
+                 - Maintainability
+                 - Reliability
+                 - Logging
+                 - Testing
 
-                EXAMPLES:
+                 EXAMPLES:
 
-                High|Security|Hardcoded password detected|Move secrets to configuration
+                 High|Security|Hardcoded password detected|Move secrets to configuration
 
-                Medium|Logging|Console.WriteLine detected|Use ILogger instead
+                 Medium|Logging|Console.WriteLine detected|Use ILogger instead
 
-                DO NOT return markdown.
-                DO NOT return bullet points.
-                DO NOT return explanations.
-                DO NOT return introductory text.
+                 DO NOT return markdown.
+                 DO NOT return bullet points.
+                 DO NOT return explanations.
+                 DO NOT return introductory text.
+              
+                 File:
+                 {{fileName}}
 
-                File:
-                {fileName}
-
-                Code:
-                {content}
-                """;
+                 Code:
+                 {{content}}
+                 """;
     }
 }

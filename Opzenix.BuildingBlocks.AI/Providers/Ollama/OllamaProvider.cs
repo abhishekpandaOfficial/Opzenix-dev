@@ -35,8 +35,9 @@ public sealed class OllamaProvider
         var prompt =
             ReviewPromptBuilder.Build(
                 request.FileName,
-                request.Content);
-
+                request.Content,
+                request.ReviewType);
+        
         var response =
             await client.PostAsJsonAsync(
                 $"{_options.BaseUrl}/api/generate",

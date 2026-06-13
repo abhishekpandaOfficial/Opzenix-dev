@@ -5,6 +5,7 @@ using Opzenix.Modules.Reviews.Application.Commands.GenerateReview;
 using Opzenix.Modules.Reviews.Application.Queries.GetReviewById;
 using Opzenix.Modules.Reviews.Application.Queries.GetReviewFindings;
 using Opzenix.Modules.Reviews.Application.Queries.GetReviews;
+using Opzenix.Modules.Reviews.Contracts.Requests;
 
 namespace Opzenix.Api.Controllers;
 
@@ -23,13 +24,14 @@ public sealed class ReviewsController
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        Guid pullRequestId,
+        [FromBody] CreateReviewRequest request,
         CancellationToken cancellationToken)
     {
         var reviewId =
             await _mediator.Send(
                 new CreateReviewCommand(
-                    pullRequestId),
+                    request.PullRequestId,
+                    request.ReviewType),
                 cancellationToken);
 
         return Ok(reviewId);

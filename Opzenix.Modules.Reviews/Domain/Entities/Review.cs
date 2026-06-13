@@ -1,4 +1,5 @@
 using Opzenix.BuildingBlocks.Domain;
+using Opzenix.Modules.Reviews.Domain.Enums;
 
 namespace Opzenix.Modules.Reviews.Domain.Entities;
 
@@ -20,16 +21,18 @@ public sealed class Review : AggregateRoot
     public int LinesAnalyzed { get; private set; }
 
     public int FindingsCount { get; private set; }
+    public ReviewType ReviewType { get; private set; }
 
     private Review()
     {
     }
 
-    public Review(Guid pullRequestId)
+    public Review(Guid pullRequestId, ReviewType reviewType)
     {
         Id = Guid.NewGuid();
 
         PullRequestId = pullRequestId;
+        ReviewType = reviewType;
 
         Status = "Pending";
 

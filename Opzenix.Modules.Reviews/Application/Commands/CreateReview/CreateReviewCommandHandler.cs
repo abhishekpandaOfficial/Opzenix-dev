@@ -21,7 +21,8 @@ public sealed class CreateReviewCommandHandler
     {
         var review =
             new Review(
-                request.PullRequestId);
+                request.PullRequestId,
+                request.ReviewType);
 
         _dbContext.Reviews.Add(
             review);
