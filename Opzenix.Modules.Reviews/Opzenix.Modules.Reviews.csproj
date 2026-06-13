@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Opzenix.BuildingBlocks\Opzenix.BuildingBlocks.csproj" />
     <ProjectReference Include="..\Opzenix.Modules.Repositories\Opzenix.Modules.Repositories.csproj" />
+    <ProjectReference Include="..\Opzenix.BuildingBlocks.AI\Opzenix.BuildingBlocks.AI.csproj" />
   </ItemGroup>
 
 <ItemGroup>

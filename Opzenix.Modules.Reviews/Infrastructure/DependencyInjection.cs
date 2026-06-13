@@ -4,9 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Opzenix.Modules.Reviews.Application.Interfaces;
 using Opzenix.Modules.Reviews.Infrastructure.Persistence;
 using MediatR;
+using Opzenix.BuildingBlocks.AI.DependencyInjection;
 using Opzenix.Modules.Repositories.Infrastructure.Persistence;
 using Opzenix.Modules.Reviews.Application.Commands.CreateReview;
-using Opzenix.Modules.Reviews.Application.Services;
+
 
 namespace Opzenix.Modules.Reviews.Infrastructure;
 
@@ -30,8 +31,7 @@ public static class DependencyInjection
         services.AddScoped<
             IReviewsDbContext,
             ReviewsDbContext>();
-        services.AddScoped<
-            ReviewFindingService>();
+
         services.AddScoped<
             RepositoryDbContext>();
         services.AddMediatR(cfg =>
@@ -39,7 +39,7 @@ public static class DependencyInjection
             cfg.RegisterServicesFromAssemblyContaining<
                 CreateReviewCommandHandler>();
         });
-
+        services.AddAi();
         return services;
     }
 }

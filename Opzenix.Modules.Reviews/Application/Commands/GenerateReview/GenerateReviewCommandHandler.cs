@@ -2,7 +2,10 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Opzenix.Modules.Repositories.Infrastructure.Persistence;
 using Opzenix.Modules.Reviews.Application.Interfaces;
-using Opzenix.Modules.Reviews.Application.Services;
+
+using Opzenix.BuildingBlocks.AI.Abstractions;
+using Opzenix.BuildingBlocks.AI.Models;
+using Opzenix.Modules.Reviews.Domain.Entities;
 
 namespace Opzenix.Modules.Reviews.Application.Commands.GenerateReview;
 
@@ -12,17 +15,16 @@ public sealed class GenerateReviewCommandHandler
     private readonly IReviewsDbContext _reviewsDbContext;
 
     private readonly RepositoryDbContext _repositoryDbContext;
-
-    private readonly ReviewFindingService _reviewFindingService;
-
+    private readonly IAiProviderFactory _aiProviderFactory;
+    
     public GenerateReviewCommandHandler(
         IReviewsDbContext reviewsDbContext,
         RepositoryDbContext repositoryDbContext,
-        ReviewFindingService reviewFindingService)
+        IAiProviderFactory aiProviderFactory)
     {
         _reviewsDbContext = reviewsDbContext;
         _repositoryDbContext = repositoryDbContext;
-        _reviewFindingService = reviewFindingService;
+        _aiProviderFactory = aiProviderFactory;
     }
 
     public async Task Handle(
@@ -51,21 +53,34 @@ public sealed class GenerateReviewCommandHandler
                 x => x.Patch?.Split('\n').Length ?? 0);
 
         var findingsCount = 0;
+        var provider =
+            _aiProviderFactory.GetProvider(
+                "RuleBased");
 
         foreach (var file in files)
         {
-            var findings =
-                _reviewFindingService.Analyze(
-                    review.Id,
-                    file.FileName,
-                    file.Patch);
+            var response =
+                await provider.ReviewAsync(
+                    new AiReviewRequest
+                    {
+                        ReviewId = review.Id,
+                        FileName = file.FileName,
+                        Content = file.Patch
+                    },
+                    cancellationToken);
 
-            findingsCount += findings.Count;
+            findingsCount += response.Findings.Count;
 
-            foreach (var finding in findings)
+            foreach (var finding in response.Findings)
             {
                 _reviewsDbContext.ReviewFindings.Add(
-                    finding);
+                    new ReviewFinding(
+                        review.Id,
+                        finding.FileName,
+                        finding.Severity,
+                        finding.Category,
+                        finding.Message,
+                        finding.Recommendation));
             }
         }
 

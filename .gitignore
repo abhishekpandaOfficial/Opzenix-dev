@@ -3,7 +3,7 @@
 # =====================================
 # Additional .NET Build Artifacts
 # =====================================
-
+.DS_Store
 *.cache
 *.pdb
 *.mdb
