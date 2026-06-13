@@ -6,6 +6,8 @@ using Opzenix.Modules.Reviews.Application.Interfaces;
 using Opzenix.BuildingBlocks.AI.Abstractions;
 using Opzenix.BuildingBlocks.AI.Models;
 using Opzenix.Modules.Reviews.Domain.Entities;
+using Microsoft.Extensions.Options;
+using Opzenix.BuildingBlocks.AI.Configuration;
 
 namespace Opzenix.Modules.Reviews.Application.Commands.GenerateReview;
 
@@ -16,15 +18,18 @@ public sealed class GenerateReviewCommandHandler
 
     private readonly RepositoryDbContext _repositoryDbContext;
     private readonly IAiProviderFactory _aiProviderFactory;
+    private readonly AiOptions _aiOptions;
     
     public GenerateReviewCommandHandler(
         IReviewsDbContext reviewsDbContext,
         RepositoryDbContext repositoryDbContext,
-        IAiProviderFactory aiProviderFactory)
+        IAiProviderFactory aiProviderFactory,
+        IOptions<AiOptions> aiOptions)
     {
         _reviewsDbContext = reviewsDbContext;
         _repositoryDbContext = repositoryDbContext;
         _aiProviderFactory = aiProviderFactory;
+        _aiOptions = aiOptions.Value;
     }
 
     public async Task Handle(
@@ -55,7 +60,7 @@ public sealed class GenerateReviewCommandHandler
         var findingsCount = 0;
         var provider =
             _aiProviderFactory.GetProvider(
-                "RuleBased");
+                _aiOptions.DefaultProvider);
 
         foreach (var file in files)
         {

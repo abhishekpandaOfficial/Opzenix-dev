@@ -39,7 +39,7 @@ public static class DependencyInjection
             cfg.RegisterServicesFromAssemblyContaining<
                 CreateReviewCommandHandler>();
         });
-        services.AddAi();
+        services.AddAi(configuration);
         return services;
     }
 }

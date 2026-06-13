@@ -16,9 +16,18 @@ public sealed class AiProviderFactory
     public IAiProvider GetProvider(
         string providerName)
     {
-        return _providers.First(
-            x => x.Name.Equals(
-                providerName,
-                StringComparison.OrdinalIgnoreCase));
+        Console.WriteLine(
+            $"Resolving Provider: {providerName}");
+
+        var provider =
+            _providers.First(
+                x => x.Name.Equals(
+                    providerName,
+                    StringComparison.OrdinalIgnoreCase));
+
+        Console.WriteLine(
+            $"Provider Found: {provider.Name}");
+
+        return provider;
     }
 }

@@ -29,3 +29,6 @@
 -- Verify Connection 
     psql -h localhost -p 5432 -U postgres -d opzenix
     Password : postgres
+    =============================
+
+    
