@@ -1,5 +1,6 @@
 using MediatR;
 using Opzenix.Modules.Reviews.Contracts.Responses;
+using Opzenix.Modules.Reviews.Contracts.Responses.Findings;
 
 namespace Opzenix.Modules.Reviews.Application.Queries.GetReviewFindings;
 

@@ -1,68 +1,89 @@
 # Backend Architecture
 
-## Architecture Style
+## Technology Stack
 
-Modular Monolith
+.NET 10
 
-Patterns:
+PostgreSQL
 
-* Domain Driven Design
-* CQRS
-* Clean Architecture
-* Repository Pattern
-* Provider Pattern
-* Dependency Injection
+Entity Framework Core
 
----
+MediatR
+
+FluentValidation
+
+Gemini AI
+
+GitHub API
 
 ## Modules
 
 ### Identity
 
-Authentication and authorization.
+Organizations
+
+Users
+
+Memberships
+
+Roles
+
+Permissions
 
 ### Repositories
 
-Repository synchronization and Git provider integrations.
+Repositories
+
+Branches
+
+Commits
+
+Pull Requests
+
+Pull Request Files
+
+GitHub Sync
 
 ### Reviews
 
-Review orchestration and findings management.
+Review Creation
 
-### Knowledge Graph
+Review Generation
 
-Engineering knowledge graph and dependency intelligence.
+Review Findings
 
-### AI
+Review Summary
 
-AI abstraction layer and provider integrations.
+AI Metadata
 
----
+### Dashboard
 
-## Data Flow
+Overview
 
-Repository
+Recent Reviews
 
-↓
+Top Repositories
 
-Pull Request
+Activity Feed
 
-↓
+### Analytics
 
-Review
+Findings Analytics
 
-↓
+Provider Analytics
 
-AI Provider
+Reviews Over Time
 
-↓
+## Architecture Pattern
 
-Findings
+Modular Monolith
 
-↓
+Domain Driven Design
 
-Analytics
+CQRS
 
-↓
+MediatR
 
-Dashboard
+Repository Pattern
+
+Event Driven Extensions

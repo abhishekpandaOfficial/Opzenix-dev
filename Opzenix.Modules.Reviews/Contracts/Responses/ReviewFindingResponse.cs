@@ -1,7 +1,9 @@
-namespace Opzenix.Modules.Reviews.Contracts.Responses;
+namespace Opzenix.Modules.Reviews.Contracts.Responses.Findings;
 
 public sealed class ReviewFindingResponse
 {
+    public Guid ReviewId { get; init; }
+
     public string FileName { get; init; }
         = string.Empty;
 
